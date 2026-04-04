@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Joseph Wimsatt — Independent Researcher, Inventor, and Technician. Cosmology, electronics, fabrication, and original research from the Texas Hill Country.">
+  <title>Joseph Wimsatt — Independent Researcher & Inventor</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#home" class="nav-name">Joseph Wimsatt</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#service">Repair &amp; Service</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Joseph Wimsatt</h1>
+      <p class="hero-subtitle">Independent Researcher &bull; Inventor &bull; Technician</p>
+      <p class="hero-tagline">First-principles thinking applied to cosmology, electronics, and everything in between.<br>Seguin, Texas &mdash; Hill Country.</p>
+      <div class="hero-actions">
+        <a href="#research" class="btn btn-primary">View Research</a>
+        <a href="#projects" class="btn btn-secondary">See Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About</h2>
+      <div class="about-grid">
+        <div class="about-photo">
+          <!-- Replace src with your headshot -->
+          <div class="photo-placeholder">Photo</div>
+        </div>
+        <div class="about-text">
+          <p>I'm an independent researcher and hands-on technician working from the Texas Hill Country. No university affiliation, no corporate lab — just rigorous, self-directed work across cosmological theory, electronics design, fabrication, and industrial repair.</p>
+          <p>I published an alternative cosmological framework on Zenodo that makes specific, testable predictions. I design PCBs in KiCad, rebuild welding machines down to the component level, and manufacture 3D-printed replacement parts. Every project gets the same treatment: first-principles reasoning, thorough documentation, and real results.</p>
+          <p>I'm a husband and father. I keep chickens, grow Central Texas native plants, and teach my kids by doing — soldering, electroplating, building. My faith in Jehovah is the foundation everything else stands on.</p>
+          <p>A man of many nationalities, rooted in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research" class="section section-alt">
+    <div class="container">
+      <h2>Research</h2>
+      <div class="research-card">
+        <h3>Tired Light Theory: A Unified Framework</h3>
+        <p class="research-full-title">A Unified Framework for Dark Matter, Stellar Anomalies, and Cosmic Structure via Higgs Field Interaction</p>
+        <p class="research-author">Joseph Wimsatt &mdash; Independent Researcher</p>
+        <p>Photons lose energy through interaction with the Higgs field as they travel across cosmological distances — a mechanism that explains redshift without requiring universal expansion. This framework makes specific, testable predictions:</p>
+        <ul>
+          <li>An effective Hubble parameter derived from Higgs coupling</li>
+          <li>A predicted cosmic microwave background temperature of ~2.68 K (measured: 2.725 K)</li>
+          <li>Structure in the cosmic microwave background temperature fluctuation spectrum</li>
+          <li>A unified account of dark matter phenomena, stellar anomalies, and large-scale cosmic structure</li>
+        </ul>
+        <a href="https://doi.org/10.5281/zenodo.18815508" class="btn btn-primary" target="_blank" rel="noopener">Read on Zenodo</a>
+      </div>
+
+      <div class="research-figures">
+        <h3>Key Results</h3>
+        <div class="figure-grid">
+          <figure class="research-figure">
+            <img src="images/fig1_energy_loss.png" alt="Photon energy loss via Higgs interaction and redshift-distance relation" loading="lazy">
+            <figcaption>Photon energy loss via Higgs interaction and the resulting redshift-distance relation</figcaption>
+          </figure>
+          <figure class="research-figure">
+            <img src="images/fig2_halo_profiles.png" alt="Dark matter halo profiles and galaxy rotation curves compared with standard cold dark matter model" loading="lazy">
+            <figcaption>Dark matter halo profiles and rotation curves — tired light harvesting vs. standard cold dark matter</figcaption>
+          </figure>
+          <figure class="research-figure">
+            <img src="images/fig5_predictions_summary.png" alt="Four testable predictions: luminosity-halo correlation, age anomalies, cosmic recycling cycle, and cosmic microwave background cutoff" loading="lazy">
+            <figcaption>Four independently testable predictions of the framework</figcaption>
+          </figure>
+          <figure class="research-figure">
+            <img src="images/fig8_universe_age.png" alt="Universe age estimation using expansion-independent constraints under the tired light framework" loading="lazy">
+            <figcaption>Universe age estimation using expansion-independent constraints</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <h3>The Hammer and The Scalpel</h3>
+        <p>An original invention concept for atmospheric precipitation control using electrostatic polarization of water molecules followed by a resonant frequency sweep to drive droplet coalescence into rainfall. Optimized across 81 parameter combinations via Python simulation.</p>
+      </div>
+
+      <div class="research-card">
+        <h3>Adjacent Research Interests</h3>
+        <ul>
+          <li>Plasma electromagnetics and novel electromagnetic shielding (plasma-shell concept)</li>
+          <li>Nanoscale device architecture — electret charge, quantum tunneling through metal-insulator-metal layers, Brownian motion</li>
+          <li>Higgs field physics beyond particle physics applications</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="project-grid">
+
+        <div class="project-card">
+          <div class="photo-placeholder">Photo</div>
+          <h3>Stepper Motor Controller PCB</h3>
+          <p>Custom KiCad design featuring TMC2209 driver, 4PDT relay auto-sense circuit for unknown coil resistance measurement, 4S 18650 battery power, and dual Arduino Nano/Seeeduino XIAO header footprint. Two-layer FR4, ~100&times;80mm.</p>
+          <span class="tag">KiCad</span>
+          <span class="tag">Electronics</span>
+          <span class="tag">Design</span>
+        </div>
+
+        <div class="project-card">
+          <div class="photo-placeholder">Photo</div>
+          <h3>3D-Printed Carburetor Parts</h3>
+          <p>Choke control knob and bracket with brass heat-set insert and split-clamp collar design. ABS+ material. Designed in FreeCAD, currently in production and available for purchase.</p>
+          <span class="tag">FreeCAD</span>
+          <span class="tag">3D Printing</span>
+          <span class="tag">Manufacturing</span>
+        </div>
+
+        <div class="project-card">
+          <div class="photo-placeholder">Photo</div>
+          <h3>Claude Automation Tooling</h3>
+          <p>Custom-built session management and monitoring tools: cron-based resume scripts, terminal dashboard for research pipeline monitoring, and a curses-based API monitoring dashboard. All Python standard library.</p>
+          <span class="tag">Python</span>
+          <span class="tag">Automation</span>
+        </div>
+
+        <div class="project-card">
+          <div class="photo-placeholder">Photo</div>
+          <h3>Nanoscale Device Research</h3>
+          <p>Experimental concept combining electret charge, quantum tunneling through metal-insulator-metal layers, and Brownian motion. Includes homebrew electroplating test protocol — a hands-on science project with my kids.</p>
+          <span class="tag">Physics</span>
+          <span class="tag">Fabrication</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- REPAIR & SERVICE -->
+  <section id="service" class="section section-alt">
+    <div class="container">
+      <h2>Repair &amp; Service</h2>
+      <p class="section-intro">Component-level diagnostics and repair on industrial welding equipment. I work without complete schematics when necessary, trace faults from first principles, and document everything.</p>
+      <div class="project-grid">
+
+        <div class="project-card">
+          <h3>Miller Big Blue Series</h3>
+          <p>Control board repair on Big Blue 300, 400, and 500 models. PC1/PC2 board work including filter inductors, RS-485 transceiver replacement (DS75176BM), and fault code diagnosis (HLP20, HLP21). Thermostat characterization and generator winding investigation.</p>
+        </div>
+
+        <div class="project-card">
+          <h3>Hobart 10K Welder/Generator</h3>
+          <p>Full diagnostic including rotor circuit fuse fault, ACZ/DCZ leakage to chassis, IGBT replacement, and RS-485 termination diagnosis. Detailed service documentation provided to customer.</p>
+        </div>
+
+        <div class="project-card">
+          <h3>Small Engine Diagnosis</h3>
+          <p>Briggs &amp; Stratton, Kohler, and Subaru OHV engines. Mechanical diagnostics, carburetor work, and natural gas conversion analysis.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section id="shop" class="section">
+    <div class="container">
+      <h2>Shop</h2>
+      <div class="shop-item">
+        <div class="photo-placeholder shop-photo">Product Photo</div>
+        <div class="shop-details">
+          <h3>Choke Control Knob &amp; Bracket Assembly</h3>
+          <p>3D-printed replacement for carburetor choke control. ABS+ construction with brass heat-set insert (reuses OEM insert) and split-clamp collar design. Includes detailed installation documentation.</p>
+          <p>Designed as a direct replacement — no modification required.</p>
+          <a href="#contact" class="btn btn-primary">Inquire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section section-alt">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>For research inquiries, repair work, parts orders, or collaboration.</p>
+      <div class="contact-links">
+        <a href="https://github.com/wimsattj" class="btn btn-secondary" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://doi.org/10.5281/zenodo.18815508" class="btn btn-secondary" target="_blank" rel="noopener">Zenodo</a>
+        <!-- Add email or other contact methods as desired -->
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2026 Joseph Wimsatt. Seguin, Texas.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
