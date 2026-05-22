@@ -16,11 +16,11 @@
       <p class="site-role">Independent Researcher<br>Inventor &amp; Technician</p>
     </div>
     <nav class="sidebar-nav">
-      <a href="#home" class="nav-item active" data-section="home">Home</a>
+      <a href="#service" class="nav-item active" data-section="service">Repair &amp; Service</a>
+      <a href="#home" class="nav-item" data-section="home">Home</a>
       <a href="#about" class="nav-item" data-section="about">About</a>
       <a href="#research" class="nav-item" data-section="research">Research</a>
       <a href="#projects" class="nav-item" data-section="projects">Projects</a>
-      <a href="#service" class="nav-item" data-section="service">Repair &amp; Service</a>
       <a href="#shop" class="nav-item" data-section="shop">Shop</a>
       <a href="#contact" class="nav-item" data-section="contact">Contact</a>
     </nav>
@@ -39,11 +39,11 @@
   <!-- MOBILE NAV OVERLAY -->
   <div class="mobile-overlay">
     <nav class="mobile-nav">
+      <a href="#service" class="mobile-nav-item" data-section="service">Repair &amp; Service</a>
       <a href="#home" class="mobile-nav-item" data-section="home">Home</a>
       <a href="#about" class="mobile-nav-item" data-section="about">About</a>
       <a href="#research" class="mobile-nav-item" data-section="research">Research</a>
       <a href="#projects" class="mobile-nav-item" data-section="projects">Projects</a>
-      <a href="#service" class="mobile-nav-item" data-section="service">Repair &amp; Service</a>
       <a href="#shop" class="mobile-nav-item" data-section="shop">Shop</a>
       <a href="#contact" class="mobile-nav-item" data-section="contact">Contact</a>
     </nav>
@@ -53,16 +53,17 @@
   <main class="window">
 
     <!-- HOME -->
-    <section id="home" class="panel panel--home active">
+    <section id="home" class="panel panel--home">
       <div class="panel-content hero-content">
         <h1 class="hero-title">Joseph Wimsatt</h1>
-        <p class="hero-subtitle">Independent Researcher &bull; Inventor &bull; Technician</p>
-        <p class="hero-tagline">First-principles thinking applied to cosmology, electronics, and everything in between.</p>
+        <p class="hero-subtitle">Technician &bull; Independent Researcher &bull; Inventor</p>
+        <p class="hero-tagline">Evaluate and repair. First-principles thinking applied to industrial equipment, electronics, and cosmological theory.</p>
         <div class="hero-location">Seguin, Texas &mdash; Hill Country</div>
         <div class="hero-actions">
-          <a href="#research" class="btn btn-primary">View Research</a>
+          <a href="#service" class="btn btn-primary">Repair &amp; Service</a>
           <a href="#projects" class="btn btn-secondary">See Projects</a>
         </div>
+      </div>
       </div>
       <div class="hills">
         <div class="hill hill--back"></div>
@@ -78,12 +79,12 @@
           <h2>About</h2>
           <div class="about-grid">
             <div class="about-photo">
-              <div class="photo-placeholder">Photo</div>
+              <img src="images/joseph-wimsatt-portrait.jpg" alt="Joseph Wimsatt portrait" loading="lazy">
             </div>
             <div class="about-text">
-              <p>I'm an independent researcher and hands-on technician working from the Texas Hill Country. No university affiliation, no corporate lab — just rigorous, self-directed work across cosmological theory, electronics design, fabrication, and industrial repair.</p>
-              <p>I published an alternative cosmological framework on Zenodo that makes specific, testable predictions. I design PCBs in KiCad, rebuild welding machines down to the component level, and manufacture 3D-printed replacement parts. Every project gets the same treatment: first-principles reasoning, thorough documentation, and real results.</p>
-              <p>I'm a husband and father. I grow Central Texas native plants and teach my kids by doing — soldering, electroplating, building. My faith in Jehovah is the foundation everything else stands on.</p>
+              <p>I'm an independent researcher and technician in the Texas Hill Country. I focus on cosmological theory, electronics, and industrial repair.</p>
+              <p>I evaluate and repair equipment from the ground up. I also design PCBs and manufacture custom replacement parts.</p>
+              <p>I'm a husband and father. I grow native plants and teach my kids by doing. My faith in Jehovah is the foundation of my life.</p>
               <p class="about-closing">A man of many nationalities, rooted in one place.</p>
             </div>
           </div>
@@ -163,7 +164,7 @@
           <div class="project-grid">
 
             <div class="project-card">
-              <div class="photo-placeholder">Photo</div>
+              <img src="images/stepper-motor-controller-pcb.jpg" alt="Stepper Motor Controller PCB" loading="lazy">
               <h3>Stepper Motor Controller PCB</h3>
               <p>Custom KiCad design featuring TMC2209 driver, 4PDT relay auto-sense circuit for unknown coil resistance measurement, 4S 18650 battery power, and dual Arduino Nano/Seeeduino XIAO header footprint. Two-layer FR4, ~100&times;80mm.</p>
               <div class="tags">
@@ -174,7 +175,7 @@
             </div>
 
             <div class="project-card">
-              <div class="photo-placeholder">Photo</div>
+              <img src="images/3d-printed-carburetor-parts.jpg" alt="3D-Printed Carburetor Parts" loading="lazy">
               <h3>3D-Printed Carburetor Parts</h3>
               <p>Choke control knob and bracket with brass heat-set insert and split-clamp collar design. ABS+ material. Designed in FreeCAD, currently in production and available for purchase.</p>
               <div class="tags">
@@ -185,7 +186,7 @@
             </div>
 
             <div class="project-card">
-              <div class="photo-placeholder">Photo</div>
+              <img src="images/claude-automation-tooling.jpg" alt="Claude Automation Tooling" loading="lazy">
               <h3>Claude Automation Tooling</h3>
               <p>Custom-built session management and monitoring tools: cron-based resume scripts, terminal dashboard for research pipeline monitoring, and a curses-based API monitoring dashboard. All Python standard library.</p>
               <div class="tags">
@@ -195,7 +196,7 @@
             </div>
 
             <div class="project-card">
-              <div class="photo-placeholder">Photo</div>
+              <img src="images/nanoscale-device-research.jpg" alt="Nanoscale Device Research" loading="lazy">
               <h3>Nanoscale Device Research</h3>
               <p>Experimental concept combining electret charge, quantum tunneling through metal-insulator-metal layers, and Brownian motion. Includes homebrew electroplating test protocol — a hands-on science project with my kids.</p>
               <div class="tags">
@@ -210,26 +211,19 @@
     </section>
 
     <!-- REPAIR & SERVICE -->
-    <section id="service" class="panel panel--service">
+    <section id="service" class="panel panel--service active">
       <div class="panel-scroll">
         <div class="panel-content">
           <h2>Repair &amp; Service</h2>
-          <p class="section-intro">Component-level diagnostics and repair on industrial welding equipment. I work without complete schematics when necessary, trace faults from first principles, and document everything.</p>
+          <p class="section-intro">I evaluate and repair.</p>
           <div class="project-grid">
 
             <div class="project-card">
-              <h3>Miller Big Blue Series</h3>
-              <p>Control board repair on Big Blue 300, 400, and 500 models. PC1/PC2 board work including filter inductors, RS-485 transceiver replacement (DS75176BM), and fault code diagnosis (HLP20, HLP21). Thermostat characterization and generator winding investigation.</p>
+              <p>I change oil, do tune ups, and can turn rotor slip rings and end bell bearings.</p>
             </div>
 
             <div class="project-card">
-              <h3>Hobart 10K Welder/Generator</h3>
-              <p>Full diagnostic including rotor circuit fuse fault, ACZ/DCZ leakage to chassis, IGBT replacement, and RS-485 termination diagnosis. Detailed service documentation provided to customer.</p>
-            </div>
-
-            <div class="project-card">
-              <h3>Small Engine Diagnosis</h3>
-              <p>Briggs &amp; Stratton, Kohler, and Subaru OHV engines. Mechanical diagnostics, carburetor work, and natural gas conversion analysis.</p>
+              <p>I can rebuild carburetors, and fix control boards.</p>
             </div>
 
           </div>
@@ -243,7 +237,7 @@
         <div class="panel-content">
           <h2>Shop</h2>
           <div class="shop-item">
-            <div class="photo-placeholder shop-photo">Product Photo</div>
+            <img src="images/choke-control-knob-product.jpg" alt="Choke Control Knob & Bracket Assembly" loading="lazy" class="shop-photo">
             <div class="shop-details">
               <h3>Choke Control Knob &amp; Bracket Assembly</h3>
               <p>3D-printed replacement for carburetor choke control. ABS+ construction with brass heat-set insert (reuses OEM insert) and split-clamp collar design. Includes detailed installation documentation.</p>
