@@ -318,6 +318,17 @@ ul {
   padding: 0 2rem;
 }
 
+.hero-portrait {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  border: 3px solid var(--earth-tan);
+  box-shadow: 0 4px 16px rgba(44, 36, 22, 0.25);
+  animation: fadeUp 0.6s 0.25s ease-out both;
+}
+
 .hero-title {
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 700;
