@@ -429,6 +429,10 @@ ul {
   background: var(--earth-light);
 }
 
+.panel--resume {
+  background: var(--earth-light);
+}
+
 .panel--projects {
   background: linear-gradient(90deg, rgba(168, 197, 160, 0.15) 0%, var(--earth-sand) 15%, var(--earth-sand) 100%);
 }
@@ -500,6 +504,10 @@ ul {
 .btn-secondary:hover {
   background: var(--earth-brown);
   color: var(--text-light);
+}
+
+.project-card .btn + .btn {
+  margin-left: 0.5rem;
 }
 
 .panel--contact .btn-secondary {
