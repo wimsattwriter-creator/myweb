@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Joseph Wimsatt — Production Engineer resume. Industrial maintenance, electronics/PCB design, precision manufacturing, and 12+ years of hands-on fabrication.">
+  <title>Joseph Wimsatt — Production Engineer Resume</title>
+  <style>
+    :root {
+      --earth-dark: #2C2416;
+      --earth-brown: #5C4A32;
+      --earth-warm: #8B6F47;
+      --earth-tan: #C4A96A;
+      --earth-sand: #E8DCC8;
+      --earth-light: #F5F0E8;
+      --green-deep: #2E5E3F;
+      --green-hill: #3D7A52;
+      --rust: #B85C38;
+      --font-body: Georgia, 'Times New Roman', serif;
+      --font-heading: 'Helvetica Neue', Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--earth-light);
+      color: var(--earth-dark);
+      font-family: var(--font-body);
+      line-height: 1.55;
+    }
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+    header.resume-header {
+      border-bottom: 3px solid var(--green-deep);
+      padding-bottom: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    header.resume-header h1 {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      margin: 0 0 0.25rem;
+      color: var(--earth-dark);
+    }
+    .role-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--rust);
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+    .contact-line {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      color: var(--earth-brown);
+    }
+    .contact-line a { color: var(--earth-brown); }
+    section { margin-bottom: 2rem; }
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--green-deep);
+      border-bottom: 1px solid var(--earth-tan);
+      padding-bottom: 0.35rem;
+      margin-bottom: 0.9rem;
+    }
+    .summary { font-size: 1.02rem; }
+    .competency-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem 2rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .competency-grid li {
+      font-size: 0.95rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .competency-grid li::before {
+      content: "\2013";
+      position: absolute;
+      left: 0;
+      color: var(--rust);
+    }
+    .job { margin-bottom: 1.3rem; }
+    .job h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      margin: 0 0 0.15rem;
+      color: var(--earth-dark);
+    }
+    .job .meta {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      color: var(--earth-warm);
+      margin-bottom: 0.4rem;
+    }
+    .job ul {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+    .job li { margin-bottom: 0.3rem; font-size: 0.95rem; }
+    .edu-cert-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+    }
+    .edu-cert-grid h3 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      margin: 0 0 0.5rem;
+    }
+    .edu-cert-grid ul {
+      margin: 0 0 1rem;
+      padding-left: 1.2rem;
+      font-size: 0.92rem;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .project-item {
+      background: white;
+      border-left: 4px solid var(--green-hill);
+      padding: 0.9rem 1rem;
+      border-radius: 0 4px 4px 0;
+      box-shadow: 0 1px 4px rgba(44, 36, 22, 0.08);
+    }
+    .project-item h3 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      margin: 0 0 0.35rem;
+    }
+    .project-item p { font-size: 0.9rem; margin: 0; }
+    .print-note {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      color: var(--earth-warm);
+      margin-top: 3rem;
+    }
+    @media print {
+      .print-note { display: none; }
+      body { background: white; }
+    }
+    @media (max-width: 640px) {
+      .competency-grid, .edu-cert-grid, .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="resume-header">
+      <h1>Joseph Wimsatt</h1>
+      <p class="role-title">Production Engineer &mdash; Industrial Maintenance, Electronics &amp; Precision Manufacturing</p>
+      <p class="contact-line">
+        Seguin, TX &nbsp;&middot;&nbsp;
+        <a href="mailto:wimsattwriter@gmail.com">wimsattwriter@gmail.com</a> &nbsp;&middot;&nbsp;
+        <a href="https://github.com/wimsattj" target="_blank" rel="noopener">github.com/wimsattj</a>
+      </p>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p class="summary">Hands-on technician and fabricator with 12+ years of industrial trade experience and a self-directed track record in electronics and precision manufacturing. Background spans structural/concrete systems on industrial job sites, metal sorting and material handling, and independently designed PCB and 3D-printed production parts built to defined tolerances. Certified welder and forklift operator with current OSHA 30 safety training. Comfortable moving between mechanical, electrical, and documentation-driven work &mdash; reads schematics and specs, diagnoses root cause rather than symptoms, and has supervised technical staff and quality control in prior roles.</p>
+    </section>
+
+    <section>
+      <h2>Core Competencies</h2>
+      <ul class="competency-grid">
+        <li>Mechanical systems diagnosis &amp; repair</li>
+        <li>PCB design &amp; electronics (KiCad)</li>
+        <li>Precision measurement &amp; tolerancing</li>
+        <li>Certified welding (Stick 7018 Unlimited)</li>
+        <li>Forklift &amp; aerial lift operation</li>
+        <li>Material handling &amp; inventory control</li>
+        <li>Quality control &amp; visual inspection</li>
+        <li>Technical documentation &amp; schematics</li>
+        <li>Control board diagnostics &amp; repair</li>
+        <li>OSHA safety compliance</li>
+        <li>Staff supervision &amp; training</li>
+        <li>Bilingual: English / Spanish</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+
+      <div class="job">
+        <h3>Journeyman Carpenter &mdash; Union Local #1266</h3>
+        <div class="meta">12 years &middot; Industrial &amp; commercial job sites</div>
+        <ul>
+          <li>Built and finished industrial concrete forms to structural specification; general facility maintenance across job sites</li>
+          <li>Installed ceiling, wall, and floor systems on commercial and industrial builds</li>
+          <li>Worked from blueprints and technical documentation on multi-trade job sites, coordinating with other crews</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Residential Construction &mdash; Hoyt Construction and others</h3>
+        <div class="meta">6 years</div>
+        <ul>
+          <li>Framing, roofing, flooring, remodeling, and retaining wall construction</li>
+          <li>Independently ran remodel and scaffold jobs including a 1-month industrial scaffold build at a chemical plant (Abel Construction) and a commercial remodel (Budget Construction)</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Metal Sorting &amp; Material Handling &mdash; ELG Metals</h3>
+        <ul>
+          <li>Sorted, identified, and classified metal materials for processing</li>
+          <li>Operated forklifts in an industrial recycling environment; performed visual quality inspections on incoming material</li>
+          <li>Maintained accurate inventory and material documentation</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Acting Supervisor &mdash; AutoZone &amp; Advance Auto Parts</h3>
+        <div class="meta">AutoZone (6 months) &middot; Advance Auto Parts (12 months)</div>
+        <ul>
+          <li>Supervised technical operations and staff in a fast-paced parts and service environment</li>
+          <li>Managed inventory accuracy, quality control, and trained staff on diagnostic and product procedures</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Computer Systems Technician &mdash; NetComet Computers</h3>
+        <ul>
+          <li>Diagnosed and repaired circuit boards and electronic assemblies at the component level</li>
+          <li>Configured firmware and control systems; provided technical support to customers</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Independent Electronics &amp; Manufacturing Projects</h3>
+        <div class="meta">Ongoing</div>
+        <ul>
+          <li>Designed a custom two-layer stepper motor controller PCB in KiCad (TMC2209 driver, auto-sensing relay circuit for unknown coil resistance measurement)</li>
+          <li>Designed and produce 3D-printed carburetor replacement parts in FreeCAD to tight tolerance, engineered as direct OEM replacements with brass heat-set inserts</li>
+          <li>Ongoing control board diagnostics and repair, and custom PCB work for industrial, mechanical, electrical, and welding equipment</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education &amp; Certifications</h2>
+      <div class="edu-cert-grid">
+        <div>
+          <h3>Associate of Applied Science &mdash; Carpentry Technology</h3>
+          <ul>
+            <li>Ivy Tech Community College / I.K.O.R.C.C. Training Center</li>
+          </ul>
+          <h3>Vocational &amp; Technical Studies</h3>
+          <ul>
+            <li>Nelson County High School &mdash; Calculus, geometry, trigonometry, statistical analysis</li>
+            <li>Computer programming (3 years): Pascal, dBase, BASIC, C, C++</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Certifications</h3>
+          <ul>
+            <li>OSHA 30-Hour Safety Certification</li>
+            <li>OSHA 10-Hour Safety Certification</li>
+            <li>Certified Stick Welding &mdash; 7018 Unlimited</li>
+            <li>Forklift Operator (improved surface &amp; rough terrain)</li>
+            <li>Aerial Lift Operator</li>
+            <li>Scaffold Erector &amp; User</li>
+            <li>CPR &amp; First Aid</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Selected Projects</h2>
+      <div class="projects-grid">
+        <div class="project-item">
+          <h3>Stepper Motor Controller PCB</h3>
+          <p>Custom two-layer KiCad design with TMC2209 driver and auto-sensing relay circuit for unknown coil resistance measurement.</p>
+        </div>
+        <div class="project-item">
+          <h3>3D-Printed Carburetor Parts</h3>
+          <p>Tight-tolerance replacement parts designed in FreeCAD, in production as direct OEM replacements.</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="print-note">Full project portfolio and additional background at <a href="https://wimsattwriter-creator.github.io/myweb/">wimsattwriter-creator.github.io/myweb</a></p>
+
+  </div>
+</body>
+</html>
