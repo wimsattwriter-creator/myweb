@@ -87,6 +87,16 @@
       left: 0;
       color: var(--rust);
     }
+    .method-intro { font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .method-links { list-style: none; padding: 0; margin: 0; }
+    .method-links li { margin-bottom: 0.65rem; }
+    .method-links a { font-weight: 600; text-decoration: none; color: var(--green-deep); }
+    .method-links a:hover { text-decoration: underline; }
+    .method-links .what { display: block; font-size: 0.9rem; opacity: 0.82; }
+    @media print {
+      .method-links a::after { content: " (" attr(data-url) ")"; font-weight: 400;
+        font-size: 0.82rem; opacity: 0.75; }
+    }
     .job { margin-bottom: 1.3rem; }
     .job h3 {
       font-family: var(--font-heading);
@@ -192,6 +202,31 @@
         <li>HTML, CSS &amp; JavaScript</li>
         <li>3D modeling in Blender for print-ready parts</li>
         <li>OrcaSlicer</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Diagnostic Method</h2>
+      <p class="method-intro">A working method for using an AI assistant on line
+      problems &mdash; so a fast answer doesn't turn into a confidently wrong one,
+      and the same fault doesn't get chased again every year. Developed over 176
+      sessions of independent research and adapted to the plant floor.</p>
+      <ul class="method-links">
+        <li>
+          <a href="presentations/METHODOLOGY_DECK_PLAIN.html" target="_blank"
+             rel="noopener" data-url="wimsattwriter-creator.github.io/myweb/presentations/METHODOLOGY_DECK_PLAIN.html">Straight
+             Answers Out of an AI on the Factory Floor</a>
+          <span class="what">Eight habits in plain language &mdash; written for
+          anyone on the line.</span>
+        </li>
+        <li>
+          <a href="presentations/METHODOLOGY_DECK_DIAGNOSTICS.html" target="_blank"
+             rel="noopener" data-url="wimsattwriter-creator.github.io/myweb/presentations/METHODOLOGY_DECK_DIAGNOSTICS.html">Diagnosing
+             a Production Line With an AI Assistant</a>
+          <span class="what">The same eight with the engineering detail, a worked
+          fault from framing to write-up, and an honest limit on what can be done
+          with the line stopped.</span>
+        </li>
       </ul>
     </section>
 

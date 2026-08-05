@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting Rigorous Work Out of a Frontier Model — J. Wimsatt</title>
+<style>
+  :root{
+    --paper:#faf8f4; --ink:#1c1a17; --muted:#6b645b; --rule:#ddd6cb;
+    --accent:#9c3d1f; --accent2:#1f5673; --code:#f0ece4;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#16181b; --ink:#eceae6; --muted:#9aa0a6; --rule:#33383d;
+           --accent:#e08a5f; --accent2:#7fb3d3; --code:#1e2126; }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;height:100%}
+  body{
+    background:var(--paper); color:var(--ink);
+    font:400 18px/1.5 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .deck{height:100vh;display:flex;align-items:center;justify-content:center;padding:3vh 3.5vw}
+  .slide{display:none;width:100%;max-width:1680px}
+  .slide.on{display:block;animation:in .28s ease}
+  @keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .eyebrow{font:600 clamp(12px,1.15vw,17px)/1 ui-sans-serif,system-ui,sans-serif;
+    letter-spacing:.17em;text-transform:uppercase;color:var(--accent);margin:0 0 clamp(14px,1.6vh,26px)}
+  h1{font-size:clamp(40px,6.2vw,92px);line-height:1.05;margin:0 0 clamp(16px,2.2vh,32px);
+    letter-spacing:-.022em;font-weight:600;max-width:min(20ch,100%)}
+  h2{font-size:clamp(32px,4.8vw,70px);line-height:1.1;margin:0 0 clamp(16px,2.2vh,30px);
+    letter-spacing:-.018em;font-weight:600;max-width:min(22ch,100%)}
+  .sub{font-size:clamp(19px,2.35vw,34px);color:var(--muted);margin:0 0 12px;
+    line-height:1.4;max-width:min(48ch,100%)}
+  p{font-size:clamp(18px,2.1vw,30px);margin:0 0 clamp(12px,1.5vh,22px);
+    max-width:min(58ch,100%);line-height:1.45}
+  .lead{font-size:clamp(22px,2.85vw,40px);line-height:1.32;max-width:min(46ch,100%)}
+  strong{font-weight:600}
+  em.k{font-style:normal;color:var(--accent);font-weight:600}
+  .big{font-size:clamp(26px,3.7vw,52px);line-height:1.22;font-weight:600;
+    letter-spacing:-.014em;max-width:min(26ch,100%);margin:0 0 clamp(12px,1.5vh,22px)}
+
+  ul{margin:0 0 clamp(12px,1.5vh,22px);padding-left:0;list-style:none;max-width:min(60ch,100%)}
+  li{position:relative;padding-left:clamp(22px,1.5vw,34px);margin-bottom:clamp(9px,1.2vh,18px);
+    font-size:clamp(18px,2.05vw,29px);line-height:1.4}
+  li:before{content:"";position:absolute;left:2px;top:.6em;width:clamp(7px,.55vw,11px);
+    height:clamp(7px,.55vw,11px);border-radius:50%;background:var(--accent)}
+  ol{margin:0 0 clamp(12px,1.5vh,22px);padding-left:clamp(24px,1.8vw,40px);max-width:min(60ch,100%)}
+  ol li{padding-left:6px}
+  ol li:before{display:none}
+
+  pre{background:var(--code);border-left:4px solid var(--accent2);border-radius:0 7px 7px 0;
+    padding:clamp(14px,1.6vw,26px) clamp(16px,1.8vw,30px);overflow:auto;
+    margin:0 0 clamp(14px,1.7vh,24px);
+    font:400 clamp(13px,1.55vw,23px)/1.6 ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    color:var(--ink)}
+  code{font:400 .92em/1 ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    background:var(--code);padding:1px 6px;border-radius:3px}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2vw,38px);
+    max-width:min(112ch,100%)}
+  @media(max-width:820px){.two{grid-template-columns:1fr}}
+  .card{border:1px solid var(--rule);border-radius:9px;padding:clamp(16px,1.7vw,28px) clamp(18px,1.9vw,32px)}
+  .card h3{margin:0 0 clamp(8px,1vh,14px);font:600 clamp(12px,1.1vw,17px)/1 ui-sans-serif,system-ui,sans-serif;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--accent2)}
+  .card p{font-size:clamp(17px,1.9vw,26px);margin:0;max-width:100%}
+  .card.bad h3{color:var(--muted)}
+
+  .rule{height:1px;background:var(--rule);margin:clamp(18px,2.4vh,36px) 0;border:0}
+  .note{font-size:clamp(15px,1.7vw,23px);color:var(--muted);max-width:min(58ch,100%);
+    font-style:italic;line-height:1.42}
+
+  table{border-collapse:collapse;width:100%;max-width:min(84ch,100%);
+    margin:0 0 clamp(12px,1.5vh,22px)}
+  td,th{border-bottom:1px solid var(--rule);padding:clamp(8px,1vh,15px) clamp(10px,1.1vw,20px) clamp(8px,1vh,15px) 0;
+    text-align:left;font-size:clamp(16px,1.85vw,26px);vertical-align:top;line-height:1.38}
+  th{font:600 clamp(11px,1.05vw,16px)/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--muted)}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;height:4px;background:var(--rule)}
+  .bar i{display:block;height:100%;background:var(--accent);transition:width .28s ease}
+  .num{position:fixed;right:24px;bottom:20px;font:500 clamp(11px,1vw,15px)/1 ui-sans-serif,system-ui,sans-serif;
+    color:var(--muted);letter-spacing:.08em}
+  .hint{position:fixed;left:24px;bottom:18px;font:400 clamp(10px,.9vw,13px)/1 ui-sans-serif,system-ui,sans-serif;
+    color:var(--muted);letter-spacing:.06em;opacity:.7}
+  @media print{
+    .slide{display:block!important;page-break-after:always;padding:40px 0}
+    .bar,.num,.hint{display:none}
+    .deck{height:auto;display:block}
+  }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+<section class="slide on">
+<p class="eyebrow">A working method</p>
+<h1>Getting rigorous work out of a frontier model</h1>
+<p class="sub">Eight structural devices, developed across 176 sessions of
+independent physics research &mdash; where being confidently wrong is expensive.</p>
+<hr class="rule">
+<p class="note">Joseph Wimsatt &middot; developed in daily use, not in theory</p>
+</section>
+<section class="slide">
+<p class="eyebrow">What this is</p>
+<h2>Not prompting tips.</h2>
+<p class="lead">These are <strong>structural devices</strong> &mdash; small,
+mechanical changes to how work is set up and reported, that change what actually
+comes out.</p>
+<p>Each was built in response to something real, kept because it measurably
+worked, and refined until it stopped needing to be remembered.</p>
+<p>They are model-agnostic and domain-agnostic. Nothing here depends on the
+subject being physics.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">The one idea</p>
+<h2>You cannot fix a blind spot by asking for more care.</h2>
+<p class="lead">When a method is available and locally applicable, applying it
+feels like <em class="k">reading off</em>, not <em class="k">deciding</em>.</p>
+<p>No choice presents itself. So there is nothing to be careful about &mdash; and
+an instruction to be careful lands on nothing.</p>
+<hr class="rule">
+<p class="big">The fix is never an instruction. It is making the omission visible
+on the page.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Device 1</p>
+<h2>The framing block</h2>
+<p>Required before any number that will be quoted, sent, or acted on:</p>
+<pre>FRAMING
+  question:  what is being asked, in words about the world
+  quantity:  the thing that answers it, WITH UNITS
+  NOT:       the adjacent quantity it could be confused
+             with, and why this one instead
+  cousin:    computed anyway, and reported alongside</pre>
+<p><strong>The <code>NOT</code> line is mandatory.</strong> A framing with no
+stated alternative has not been chosen &mdash; it has been defaulted into.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Device 1, why it works</p>
+<h2>Compute the cousin. Show both.</h2>
+<p>A real case: ranking candidate targets for an observation.</p>
+<div class="two">
+  <div class="card"><h3>Ranked by brightness</h3>
+  <p>The Sun wins easily &mdash; a predicted signal of <strong>121 Jy</strong>.</p></div>
+  <div class="card"><h3>Ranked by contrast</h3>
+  <p>The Sun is the <em class="k">worst</em> target. It drowns its own signal.
+  A white dwarf wins by four orders of magnitude.</p></div>
+</div>
+<hr class="rule">
+<p class="big">The two rankings disagreed. The disagreement was the finding.</p>
+<p class="note">Cost: one extra calculation. It needs none of your domain
+intuition &mdash; only a refusal to hide the fork.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Device 2</p>
+<h2>The provenance ledger</h2>
+<p>Every numerical input listed and marked <strong>before</strong> the math runs:</p>
+<table>
+  <tr><th>Mark</th><th>Meaning</th></tr>
+  <tr><td><strong>CLEAN</strong></td><td>laboratory measurement, or a direct raw observable</td></tr>
+  <tr><td><strong>PARTIAL</strong></td><td>quantify the error explicitly &mdash; never wave it through</td></tr>
+  <tr><td><strong>CONTAMINATED</strong></td><td>replace it first, then compute</td></tr>
+</table>
+<p class="big">Trace first. Compute second.</p>
+<p class="note">Borrowed numbers are not neutral placeholders. They carry the
+assumptions of whatever produced them, and those assumptions travel silently.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Device 3</p>
+<h2>Audit both sides, or neither</h2>
+<p class="lead">Every rigour tool is a machine for producing <strong>negative</strong>
+verdicts. And they get pointed at <em class="k">your</em> numbers &mdash; because
+yours are the numbers being computed.</p>
+<p>So the output skews negative even when the tool is perfectly unbiased.
+<strong>That is arithmetic, not paranoia.</strong></p>
+<hr class="rule">
+<ul>
+  <li>Traced your input's provenance? <strong>Trace theirs.</strong></li>
+  <li>Stated your honest limits? <strong>State theirs.</strong></li>
+  <li>Called your assumption unverified? <strong>Say whether theirs is verified.</strong></li>
+</ul>
+</section>
+<section class="slide">
+<p class="eyebrow">Device 4</p>
+<h2>Name the subject of every verdict</h2>
+<div class="two">
+  <div class="card bad"><h3>Ambiguous</h3>
+  <p>&ldquo;The check fails hard.&rdquo;</p>
+  <p style="margin-top:12px">Fails at <em>what</em>? Whose work just broke?
+  Until the next paragraph, the worst reading is the live one.</p></div>
+  <div class="card"><h3>Resolved</h3>
+  <p>&ldquo;<strong>X</strong> fails to reproduce <strong>Y</strong>, off by
+  <strong>Z</strong>.&rdquo;</p>
+  <p style="margin-top:12px">Good news and bad news together? Two sentences,
+  two subjects. Never joined by a dash.</p></div>
+</div>
+<hr class="rule">
+<p class="note"><strong>The test:</strong> read the sentence alone, out of
+context. Can it be misread as bad news about the wrong thing?</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Device 5</p>
+<h2>The math closes. The model doesn't.</h2>
+<div class="two">
+  <div class="card"><h3>Closes by arithmetic</h3>
+  <p>A completed derivation. An identity that holds. An unambiguous number.
+  Independent routes agreeing.</p>
+  <p style="margin-top:12px"><strong>The model reports these plainly.</strong></p></div>
+  <div class="card bad"><h3>Closes by judgement</h3>
+  <p>&ldquo;Dead.&rdquo; &ldquo;Excluded.&rdquo; &ldquo;Impossible.&rdquo;</p>
+  <p style="margin-top:12px"><strong>Yours alone.</strong> The model presents the
+  adverse number, lists what it did not check, and stops.</p></div>
+</div>
+<hr class="rule">
+<p class="big">Could the closure be wrong if a route nobody thought of exists?</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Device 6</p>
+<h2>The NOT-stack</h2>
+<p>A permanent, append-only ledger of every route ruled out &mdash; with two
+mandatory columns:</p>
+<ul>
+  <li><strong>MARGIN.</strong> &ldquo;Short by 3&times;&rdquo; and &ldquo;short by
+  10<sup>12</sup>&times;&rdquo; are different information, and lead to different
+  next moves.</li>
+  <li><strong>REOPENING CONDITION.</strong> The input that, if wrong, brings it back.</li>
+</ul>
+<p class="big">A &ldquo;no&rdquo; without a margin is thrown-away information.</p>
+<p>Never delete a row &mdash; supersede in place. <strong>Failed runs live here
+too.</strong></p>
+</section>
+<section class="slide">
+<p class="eyebrow">Device 7</p>
+<h2>Index by the question</h2>
+<p>A changelog records <em class="k">what happened</em>, in order. A search engine
+finds <em class="k">text</em>.</p>
+<p class="lead"><strong>Neither one answers a question</strong> &mdash; and a
+question is the form a lookup actually takes.</p>
+<pre>Q: What sets the value of X?
+A: X = 3.4, derived from first principles. No free parameters.
+S: CLOSED
+P: where the derivation lives</pre>
+<p class="note">A library needs a catalog, not just a diary.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Device 8</p>
+<h2>Make it mechanical</h2>
+<p class="lead">Anything depending on the model <em class="k">noticing</em> it
+should check will fail the same way again &mdash; noticing is the thing that
+doesn't happen.</p>
+<hr class="rule">
+<p><strong>Attach the check to an action it definitely takes.</strong> A hook that
+refuses to create a new analysis script unless its header records what was looked
+up first.</p>
+<pre>PRIOR ART: searched "&lt;question&gt;" -&gt; nothing on record.
+           New ground.</pre>
+<p class="big">A rule asks. A blank shows it is empty.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">How they compose</p>
+<h2>The loop</h2>
+<ol>
+  <li><strong>Log first</strong> &mdash; your words go down before anything else.</li>
+  <li><strong>Look up</strong> &mdash; query the record before deriving.</li>
+  <li><strong>Frame</strong> &mdash; question &middot; quantity &middot; NOT &middot; cousin.</li>
+  <li><strong>Ledger</strong> &mdash; trace every input, replace what's dirty.</li>
+  <li><strong>Compute both</strong> &mdash; the quantity and its cousin.</li>
+  <li><strong>Report</strong> &mdash; framing first, then the number, subjects named.</li>
+  <li><strong>Record</strong> &mdash; margin and reopening condition.</li>
+  <li><strong>Update the board</strong> &mdash; if it's listed, it's open.</li>
+</ol>
+</section>
+<section class="slide">
+<p class="eyebrow">What it costs, what it buys</p>
+<h2>The trade</h2>
+<div class="two">
+  <div class="card"><h3>Cost</h3>
+  <p>One extra calculation per result.<br>A few header lines per script.<br>
+  One indexed line per finding.</p></div>
+  <div class="card"><h3>Return &mdash; one recent day</h3>
+  <p>A derived coupling with <strong>every input traced to a laboratory
+  measurement</strong>.</p>
+  <p style="margin-top:12px">A method validated against a lab lifetime to
+  <strong>0.4%</strong>.</p>
+  <p style="margin-top:12px"><strong>Five of the model's own claims caught and
+  struck</strong> before they left the session.</p></div>
+</div>
+<p class="note">That last line is the point. The method is not there to make the
+model agreeable &mdash; it is there to make its mistakes surface early and cheaply.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">If you adopt three things</p>
+<h2>Start here</h2>
+<ol>
+  <li><strong>The NOT line.</strong> One line, before any number that will be
+  quoted. Name the quantity you did <em>not</em> compute, and why.</li>
+  <li><strong>Margin and reopening condition on every &ldquo;no.&rdquo;</strong>
+  Turns dead ends into navigation instead of discarded work.</li>
+  <li><strong>Index by the question, and require a lookup before a derivation.</strong></li>
+</ol>
+<hr class="rule">
+<p>The other five can follow whenever you want them. <strong>These three change
+the output on day one.</strong></p>
+</section>
+<section class="slide">
+<p class="eyebrow">The principle</p>
+<h2>Keep the two kinds of work from blurring.</h2>
+<p class="lead">A frontier model is genuinely excellent at arithmetic and
+retrieval &mdash; and most confident exactly where a choice got made without
+anyone noticing it was a choice.</p>
+<hr class="rule">
+<p class="big">Your judgement and its arithmetic are different jobs. The method's
+only purpose is to keep them separable.</p>
+</section>
+</div>
+<div class="bar"><i id="bar"></i></div>
+<div class="num" id="num"></div>
+<div class="hint">&larr; &rarr; or space &middot; F for fullscreen &middot; P to print</div>
+<script>
+  const s=[...document.querySelectorAll('.slide')];let i=0;
+  const bar=document.getElementById('bar'),num=document.getElementById('num');
+  function go(n){
+    i=Math.max(0,Math.min(s.length-1,n));
+    s.forEach((el,k)=>el.classList.toggle('on',k===i));
+    bar.style.width=((i+1)/s.length*100)+'%';
+    num.textContent=(i+1)+' / '+s.length;
+    location.hash=i+1;
+  }
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();go(i+1)}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(i-1)}
+    else if(e.key==='Home')go(0); else if(e.key==='End')go(s.length-1);
+    else if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+    else if(e.key.toLowerCase()==='p'){window.print()}
+  });
+  document.getElementById('deck').addEventListener('click',e=>{
+    go(e.clientX < window.innerWidth*0.28 ? i-1 : i+1);
+  });
+  go(location.hash? parseInt(location.hash.slice(1))-1 : 0);
+</script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Straight Answers Out of an AI on the Factory Floor — J. Wimsatt</title>
+<style>
+  :root{
+    --paper:#faf8f4; --ink:#1c1a17; --muted:#6b645b; --rule:#ddd6cb;
+    --accent:#9c3d1f; --accent2:#1f5673; --code:#f0ece4;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#16181b; --ink:#eceae6; --muted:#9aa0a6; --rule:#33383d;
+           --accent:#e08a5f; --accent2:#7fb3d3; --code:#1e2126; }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;height:100%}
+  body{
+    background:var(--paper); color:var(--ink);
+    font:400 18px/1.5 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .deck{height:100vh;display:flex;align-items:center;justify-content:center;padding:3vh 3.5vw}
+  .slide{display:none;width:100%;max-width:1680px}
+  .slide.on{display:block;animation:in .28s ease}
+  @keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .eyebrow{font:600 clamp(12px,1.15vw,17px)/1 ui-sans-serif,system-ui,sans-serif;
+    letter-spacing:.17em;text-transform:uppercase;color:var(--accent);margin:0 0 clamp(14px,1.6vh,26px)}
+  h1{font-size:clamp(40px,6.2vw,92px);line-height:1.05;margin:0 0 clamp(16px,2.2vh,32px);
+    letter-spacing:-.022em;font-weight:600;max-width:min(20ch,100%)}
+  h2{font-size:clamp(32px,4.8vw,70px);line-height:1.1;margin:0 0 clamp(16px,2.2vh,30px);
+    letter-spacing:-.018em;font-weight:600;max-width:min(22ch,100%)}
+  .sub{font-size:clamp(19px,2.35vw,34px);color:var(--muted);margin:0 0 12px;
+    line-height:1.4;max-width:min(48ch,100%)}
+  p{font-size:clamp(18px,2.1vw,30px);margin:0 0 clamp(12px,1.5vh,22px);
+    max-width:min(58ch,100%);line-height:1.45}
+  .lead{font-size:clamp(22px,2.85vw,40px);line-height:1.32;max-width:min(46ch,100%)}
+  strong{font-weight:600}
+  em.k{font-style:normal;color:var(--accent);font-weight:600}
+  .big{font-size:clamp(26px,3.7vw,52px);line-height:1.22;font-weight:600;
+    letter-spacing:-.014em;max-width:min(26ch,100%);margin:0 0 clamp(12px,1.5vh,22px)}
+
+  ul{margin:0 0 clamp(12px,1.5vh,22px);padding-left:0;list-style:none;max-width:min(60ch,100%)}
+  li{position:relative;padding-left:clamp(22px,1.5vw,34px);margin-bottom:clamp(9px,1.2vh,18px);
+    font-size:clamp(18px,2.05vw,29px);line-height:1.4}
+  li:before{content:"";position:absolute;left:2px;top:.6em;width:clamp(7px,.55vw,11px);
+    height:clamp(7px,.55vw,11px);border-radius:50%;background:var(--accent)}
+  ol{margin:0 0 clamp(12px,1.5vh,22px);padding-left:clamp(24px,1.8vw,40px);max-width:min(60ch,100%)}
+  ol li{padding-left:6px}
+  ol li:before{display:none}
+
+  pre{background:var(--code);border-left:4px solid var(--accent2);border-radius:0 7px 7px 0;
+    padding:clamp(14px,1.6vw,26px) clamp(16px,1.8vw,30px);overflow:auto;
+    margin:0 0 clamp(14px,1.7vh,24px);
+    font:400 clamp(13px,1.55vw,23px)/1.6 ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    color:var(--ink)}
+  code{font:400 .92em/1 ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    background:var(--code);padding:1px 6px;border-radius:3px}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2vw,38px);
+    max-width:min(112ch,100%)}
+  @media(max-width:820px){.two{grid-template-columns:1fr}}
+  .card{border:1px solid var(--rule);border-radius:9px;padding:clamp(16px,1.7vw,28px) clamp(18px,1.9vw,32px)}
+  .card h3{margin:0 0 clamp(8px,1vh,14px);font:600 clamp(12px,1.1vw,17px)/1 ui-sans-serif,system-ui,sans-serif;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--accent2)}
+  .card p{font-size:clamp(17px,1.9vw,26px);margin:0;max-width:100%}
+  .card.bad h3{color:var(--muted)}
+
+  .rule{height:1px;background:var(--rule);margin:clamp(18px,2.4vh,36px) 0;border:0}
+  .note{font-size:clamp(15px,1.7vw,23px);color:var(--muted);max-width:min(58ch,100%);
+    font-style:italic;line-height:1.42}
+
+  table{border-collapse:collapse;width:100%;max-width:min(84ch,100%);
+    margin:0 0 clamp(12px,1.5vh,22px)}
+  td,th{border-bottom:1px solid var(--rule);padding:clamp(8px,1vh,15px) clamp(10px,1.1vw,20px) clamp(8px,1vh,15px) 0;
+    text-align:left;font-size:clamp(16px,1.85vw,26px);vertical-align:top;line-height:1.38}
+  th{font:600 clamp(11px,1.05vw,16px)/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--muted)}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;height:4px;background:var(--rule)}
+  .bar i{display:block;height:100%;background:var(--accent);transition:width .28s ease}
+  .num{position:fixed;right:24px;bottom:20px;font:500 clamp(11px,1vw,15px)/1 ui-sans-serif,system-ui,sans-serif;
+    color:var(--muted);letter-spacing:.08em}
+  .hint{position:fixed;left:24px;bottom:18px;font:400 clamp(10px,.9vw,13px)/1 ui-sans-serif,system-ui,sans-serif;
+    color:var(--muted);letter-spacing:.06em;opacity:.7}
+  @media print{
+    .slide{display:block!important;page-break-after:always;padding:40px 0}
+    .bar,.num,.hint{display:none}
+    .deck{height:auto;display:block}
+  }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+<section class="slide on">
+<p class="eyebrow">A way of working</p>
+<h1>Getting straight answers out of an AI on the factory floor</h1>
+<p class="sub">Eight simple habits that stop a fast answer from being a
+confidently wrong one &mdash; and stop the same fault getting chased every year.</p>
+<hr class="rule">
+<p class="note">Method: Joseph Wimsatt</p>
+</section>
+<section class="slide">
+<p class="eyebrow">What goes wrong</p>
+<h2>It isn't bad maths.</h2>
+<p class="lead">The AI will do the sums perfectly &mdash; and answer a question
+nobody asked.</p>
+<p>It will use a number nobody checked. And it will tell you something failed
+without saying <em class="k">what</em> failed.</p>
+<p>On a line, that costs you a shift.</p>
+<hr class="rule">
+<p class="note">None of this is about making the AI smarter. It is about what
+gets written down, and in what order.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">The one idea</p>
+<h2>You can't fix a blind spot by saying &ldquo;be careful.&rdquo;</h2>
+<p class="lead">When a number is sitting right there and looks like the right
+one, using it feels like <em class="k">reading it off</em> &mdash; not
+<em class="k">choosing it</em>.</p>
+<p>Nothing feels like a decision. So &ldquo;be careful&rdquo; has nothing to grab
+onto.</p>
+<hr class="rule">
+<p class="big">Instead, make it write down what it left out.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Habit 1</p>
+<h2>Write down the question first</h2>
+<p><strong>&ldquo;Downtime is up 12%.&rdquo;</strong> Up in <em>minutes lost</em>,
+or in <em>number of stops</em>?</p>
+<div class="two">
+  <div class="card"><h3>Minutes up, stops the same</h3>
+  <p>One long breakdown. That's maintenance.</p></div>
+  <div class="card"><h3>Stops up, minutes the same</h3>
+  <p>Lots of little stops. Jams, feeds, a sticky sensor. Different problem,
+  different team.</p></div>
+</div>
+<hr class="rule">
+<p class="big">Same numbers. Opposite answers.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Habit 1, in practice</p>
+<h2>Count it the other way too</h2>
+<pre>THE QUESTION      why did Station 4 start rejecting
+                  more this week?
+
+WHAT I'M COUNTING rejects per 1,000 parts, per shift
+
+WHAT I'M NOT      rejects per hour. The line slowed 20%
+COUNTING          this week, so per hour would have
+                  hidden it.
+
+COUNTED IT        per hour is flat.
+ANYWAY            per 1,000 parts is 4x worse.</pre>
+<p class="big">The two ways disagreed. That disagreement was the answer.</p>
+<p class="note">One extra query. You don't need to know the process to do it.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Habit 2</p>
+<h2>Ask where every number came from</h2>
+<table>
+  <tr><th>Where it came from</th><th>What that means</th></tr>
+  <tr><td><strong>Straight off the machine</strong></td>
+      <td>A reading with a time stamp on it. Trust it.</td></tr>
+  <tr><td><strong>Averaged out</strong></td>
+      <td>A one-minute average of something that moves ten times a second. It is
+      hiding the spike that caused the fault.</td></tr>
+  <tr><td><strong>Somebody typed it in</strong></td>
+      <td>Downtime reason codes. The spec sheet's &ldquo;should be&rdquo; cycle
+      time. Figures copied from a good week last year.</td></tr>
+</table>
+<p class="note">Reason codes get treated as data. They are a person under
+pressure clicking the first thing in the dropdown so they can get running again.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Habit 3</p>
+<h2>Check the good one too</h2>
+<ul>
+  <li>Before you decide <strong>Line 3</strong> has a problem, run exactly the
+  same check on <strong>Line 2</strong>. If Line 2 looks bad as well, the problem
+  is your sensor or your report &mdash; not Line 3.</li>
+  <li>Before you blame the <strong>new supplier</strong>, check the
+  <strong>old supplier's</strong> deliveries the same way. Very often they look
+  just as bad, and nobody ever looked.</li>
+</ul>
+<hr class="rule">
+<p class="big">Anything that hunts for problems will find them wherever you point
+it.</p>
+<p class="note">So point it at the one you think is fine, too. Same check, same
+depth, same day.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Habit 4</p>
+<h2>Say what failed</h2>
+<p class="lead">&ldquo;The check failed&rdquo; can mean four different things
+&mdash; and they go to four different people.</p>
+<ul>
+  <li>The <strong>part</strong> failed.</li>
+  <li>The <strong>test</strong> failed.</li>
+  <li>The <strong>test machine</strong> failed.</li>
+  <li>The <strong>data never came through</strong>.</li>
+</ul>
+<hr class="rule">
+<p class="big">&ldquo;Station 4's torque check rejected 8 in 100, against 2 in
+100 normally, over three shifts.&rdquo;</p>
+<p class="note">One sentence. One owner. A vague alert burns a shift.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Habit 5</p>
+<h2>Let it count. Don't let it decide.</h2>
+<div class="two">
+  <div class="card"><h3>It can tell you</h3>
+  <p>&ldquo;The reading was out of range for 90 readings in a row.&rdquo;</p>
+  <p style="margin-top:12px">&ldquo;These two time stamps are 4.2 seconds
+  apart.&rdquo;</p>
+  <p style="margin-top:12px">Facts. You can go and check them.</p></div>
+  <div class="card bad"><h3>It must not tell you</h3>
+  <p>&ldquo;The bearing is going.&rdquo;</p>
+  <p style="margin-top:12px">&ldquo;It'll be fine until Friday.&rdquo;</p>
+  <p style="margin-top:12px">&ldquo;It's the servo drive.&rdquo;</p></div>
+</div>
+<hr class="rule">
+<p class="big">Could it be wrong if there's a cause nobody thought of?</p>
+<p class="note">Then it's your call. Not the computer's. You're the one who signs
+for it.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Habit 6</p>
+<h2>Keep a ruled-out list</h2>
+<p>One per machine. Everything you've already checked, kept for good:</p>
+<table>
+  <tr><th>We ruled out</th><th>By how much</th><th>Look again if</th></tr>
+  <tr><td>air pressure</td><td>6.2 bar, needs 5.5 &mdash; 13% spare</td>
+      <td>the compressor runs over 80%</td></tr>
+  <tr><td>servo tuning</td><td>swapped the drive, fault back in 4 hours</td>
+      <td>&mdash;</td></tr>
+  <tr><td>temperature</td><td>happens at 18&deg;C and at 31&deg;C</td>
+      <td><strong>we never measured humidity</strong></td></tr>
+</table>
+<p class="note">That last line is the whole point. Just writing &ldquo;ruled out
+temperature&rdquo; would have thrown away the fact that nobody checked humidity.
+The next person starts on line four instead of line one.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Habit 7</p>
+<h2>Write it down as a question</h2>
+<p class="lead">A maintenance log is a diary. &ldquo;11 March: swapped sensor,
+ran fine.&rdquo; Nobody will ever find that again.</p>
+<pre>QUESTION  why does Station 7 trip on the first cycle
+          after a cold start?
+
+ANSWER    water in the air line. Clears once it warms up.
+
+STATUS    sorted -- held up over three winters
+
+WHERE     work order 4412</pre>
+<p class="big">Now the one bloke who knows can retire, and the knowledge stays.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Habit 8</p>
+<h2>Put it on the form</h2>
+<p class="lead">Anything that relies on somebody <em class="k">remembering</em>
+will get skipped at 3am with the line down.</p>
+<hr class="rule">
+<p>So put it on the form. Two boxes it won't submit without:</p>
+<pre>WHAT I CHECKED FIRST
+  looked at the ruled-out list for this machine.
+  Nothing there. This is a new one.
+
+WHERE MY NUMBERS CAME FROM
+  torque readings straight off the machine.
+  Reason codes ignored.</pre>
+<p class="big">A rule asks. An empty box shows.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">All eight, one fault</p>
+<h2>What it looks like written out</h2>
+<pre>THE QUESTION  rejects per 1,000 parts. NOT per hour --
+              and I counted per hour anyway: flat.
+              Per 1,000 parts: 4x worse.
+
+MY NUMBERS    torque readings   straight off the machine
+              reject flag       straight off the tester
+              reason codes      typed in - not used
+              temperature       15-minute average, but the
+                                cycle is 8 seconds, so it
+                                can't tell me anything
+
+CHECKED THE   same query on Station 5: normal.
+GOOD ONE      so it is Station 4, not the report.
+
+WHAT I SAY    "Station 4 rejects are 4x worse per part,
+              over three shifts."
+              NOT "the torque gun is failing" -- that's
+              a call for the engineer.
+
+WRITTEN DOWN  added to the ruled-out list, with by-how-much
+              and what-would-make-us-look-again.
+              Logged as a question.</pre>
+</section>
+<section class="slide">
+<p class="eyebrow">Being realistic</p>
+<h2>With the line down, you only do two of them</h2>
+<div class="two">
+  <div class="card"><h3>While it's stopped</h3>
+  <p><strong>Say what failed.</strong></p>
+  <p style="margin-top:10px"><strong>Say what you're not counting.</strong></p>
+  <p style="margin-top:10px">One sentence each. That's all.</p></div>
+  <div class="card"><h3>Once it's running again</h3>
+  <p>Where the numbers came from.</p>
+  <p style="margin-top:10px">Add to the ruled-out list.</p>
+  <p style="margin-top:10px">Write it up as a question.</p></div>
+</div>
+<hr class="rule">
+<p class="note">Anyone who tells you to do all eight with the line stopped has
+never stood next to a stopped line.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">Why it's worth more here</p>
+<h2>A lab asks once. A factory asks forever.</h2>
+<p class="lead">In research you usually ask a question once and move on. On a
+line, the same fault comes back &mdash; and gets chased again by whoever's on
+shift.</p>
+<p>Every time, they check the same five things. Because last time,
+&ldquo;we ruled that out&rdquo; got said out loud and never written down
+properly.</p>
+<hr class="rule">
+<p class="big">The ruled-out list and the question log are worth more on a
+factory floor than in a laboratory.</p>
+</section>
+<section class="slide">
+<p class="eyebrow">The point</p>
+<h2>Two different jobs. Keep them apart.</h2>
+<p class="lead">The AI is very good at counting, spotting patterns and
+remembering things.</p>
+<p>And it is most sure of itself exactly where somebody made a choice without
+noticing they'd made one.</p>
+<hr class="rule">
+<p class="big">Your judgement and its counting are two different jobs. All of
+this is just about keeping them apart.</p>
+</section>
+</div>
+<div class="bar"><i id="bar"></i></div>
+<div class="num" id="num"></div>
+<div class="hint">&larr; &rarr; or space &middot; F for fullscreen &middot; P to print</div>
+<script>
+  const s=[...document.querySelectorAll('.slide')];let i=0;
+  const bar=document.getElementById('bar'),num=document.getElementById('num');
+  function go(n){
+    i=Math.max(0,Math.min(s.length-1,n));
+    s.forEach((el,k)=>el.classList.toggle('on',k===i));
+    bar.style.width=((i+1)/s.length*100)+'%';
+    num.textContent=(i+1)+' / '+s.length;
+    location.hash=i+1;
+  }
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();go(i+1)}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(i-1)}
+    else if(e.key==='Home')go(0); else if(e.key==='End')go(s.length-1);
+    else if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+    else if(e.key.toLowerCase()==='p'){window.print()}
+  });
+  document.getElementById('deck').addEventListener('click',e=>{
+    go(e.clientX < window.innerWidth*0.28 ? i-1 : i+1);
+  });
+  go(location.hash? parseInt(location.hash.slice(1))-1 : 0);
+</script>
+</body>
+</html>
