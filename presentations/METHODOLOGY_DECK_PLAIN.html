@@ -78,6 +78,14 @@
   th{font:600 clamp(11px,1.05vw,16px)/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.11em;
     text-transform:uppercase;color:var(--muted)}
 
+  .back{position:fixed;left:24px;top:20px;z-index:10;
+    font:500 clamp(12px,1.05vw,16px)/1 ui-sans-serif,system-ui,sans-serif;
+    letter-spacing:.04em;color:var(--muted);text-decoration:none;
+    padding:7px 12px;border:1px solid var(--rule);border-radius:999px;
+    background:var(--paper);transition:color .15s,border-color .15s}
+  .back:hover{color:var(--accent);border-color:var(--accent)}
+  .back span{margin-right:7px}
+  @media(max-width:640px){.back{left:12px;top:12px;padding:6px 10px}}
   .bar{position:fixed;left:0;right:0;bottom:0;height:4px;background:var(--rule)}
   .bar i{display:block;height:100%;background:var(--accent);transition:width .28s ease}
   .num{position:fixed;right:24px;bottom:20px;font:500 clamp(11px,1vw,15px)/1 ui-sans-serif,system-ui,sans-serif;
@@ -86,12 +94,13 @@
     color:var(--muted);letter-spacing:.06em;opacity:.7}
   @media print{
     .slide{display:block!important;page-break-after:always;padding:40px 0}
-    .bar,.num,.hint{display:none}
+    .bar,.num,.hint,.back{display:none}
     .deck{height:auto;display:block}
   }
 </style>
 </head>
 <body>
+<a class="back" href="../resume-tesla.html"><span>&larr;</span>Back to resume</a>
 <div class="deck" id="deck">
 <section class="slide on">
 <p class="eyebrow">A way of working</p>
@@ -362,6 +371,7 @@ this is just about keeping them apart.</p>
     else if(e.key.toLowerCase()==='p'){window.print()}
   });
   document.getElementById('deck').addEventListener('click',e=>{
+    if(e.target.closest('a')) return;   // let links be links
     go(e.clientX < window.innerWidth*0.28 ? i-1 : i+1);
   });
   go(location.hash? parseInt(location.hash.slice(1))-1 : 0);
