@@ -14,15 +14,17 @@
            --accent:#e08a5f; --accent2:#7fb3d3; --code:#1e2126; }
   }
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;height:100%}
+  html,body{margin:0;padding:0;min-height:100%;-webkit-text-size-adjust:100%}
+  body{-webkit-tap-highlight-color:transparent}
   body{
     background:var(--paper); color:var(--ink);
     font:400 18px/1.5 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
     -webkit-font-smoothing:antialiased;
   }
-  .deck{height:100vh;display:flex;align-items:center;justify-content:center;padding:3vh 3.5vw}
+  .deck{min-height:100vh;min-height:100dvh;display:flex;justify-content:center;
+    padding:3vh 3.5vw;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .slide{display:none;width:100%;max-width:1680px}
-  .slide.on{display:block;animation:in .28s ease}
+  .slide.on{display:block;margin:auto;animation:in .28s ease}
   @keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
   .eyebrow{font:600 clamp(12px,1.15vw,17px)/1 ui-sans-serif,system-ui,sans-serif;
@@ -86,12 +88,36 @@
   .back:hover{color:var(--accent);border-color:var(--accent)}
   .back span{margin-right:7px}
   @media(max-width:640px){.back{left:12px;top:12px;padding:6px 10px}}
+  .tscroll{max-width:min(84ch,100%);overflow-x:auto;-webkit-overflow-scrolling:touch;
+    margin:0 0 clamp(12px,1.5vh,22px)}
+  .tscroll,pre{background-image:linear-gradient(to left,var(--paper),transparent 26px);
+    background-repeat:no-repeat;background-position:right;background-size:26px 100%;
+    background-attachment:local}
+  .tscroll table{margin-bottom:0}
   .bar{position:fixed;left:0;right:0;bottom:0;height:4px;background:var(--rule)}
   .bar i{display:block;height:100%;background:var(--accent);transition:width .28s ease}
   .num{position:fixed;right:24px;bottom:20px;font:500 clamp(11px,1vw,15px)/1 ui-sans-serif,system-ui,sans-serif;
     color:var(--muted);letter-spacing:.08em}
   .hint{position:fixed;left:24px;bottom:18px;font:400 clamp(10px,.9vw,13px)/1 ui-sans-serif,system-ui,sans-serif;
     color:var(--muted);letter-spacing:.06em;opacity:.7}
+  @media(max-width:640px){
+    .deck{padding:56px 18px 30px}
+    h1{font-size:31px;max-width:100%}
+    h2{font-size:27px;max-width:100%}
+    .lead{font-size:19px;max-width:100%}
+    p,li{font-size:16.5px;max-width:100%}
+    .big{font-size:21px;max-width:100%}
+    .sub{font-size:17px;max-width:100%}
+    .note{font-size:14px;max-width:100%}
+    pre{font-size:11.5px;padding:12px 13px}
+    .two{grid-template-columns:1fr;gap:14px}
+    .card p{font-size:15.5px}
+    .tscroll table{min-width:412px}
+    td,th{font-size:14.5px;padding:7px 10px 7px 0}
+    .rule{margin:14px 0}
+    .hint{font-size:11px;left:50%;transform:translateX(-50%);text-align:center}
+    .num{right:14px;bottom:16px}
+  }
   @media print{
     .slide{display:block!important;page-break-after:always;padding:40px 0}
     .bar,.num,.hint,.back{display:none}
@@ -165,12 +191,12 @@ refusal to hide the fork.</p>
 <section class="slide">
 <p class="eyebrow">Device 2</p>
 <h2>The provenance ledger</h2>
-<table>
+<div class="tscroll"><table>
   <tr><th>Mark</th><th>On a line</th></tr>
   <tr><td><strong>CLEAN</strong></td><td>raw PLC tag, timestamped, unaggregated. A physical count.</td></tr>
   <tr><td><strong>PARTIAL</strong></td><td>any average or resample. A 1-minute mean of a 10&nbsp;Hz signal hides the spike that caused the fault.</td></tr>
   <tr><td><strong>CONTAMINATED</strong></td><td><strong>operator-entered downtime reason codes.</strong> Spec-sheet &ldquo;expected&rdquo; cycle time. A golden-batch baseline taken under different conditions.</td></tr>
-</table>
+</table></div>
 <p class="note">Reason codes are treated as data. They are a person under time
 pressure picking the first item in a dropdown. Mark them, or the whole diagnosis
 inherits them.</p>
@@ -230,12 +256,12 @@ for it.</p>
 <h2>The NOT-stack</h2>
 <p>Per asset. Every route ruled out, kept permanently, with a margin and a
 reopening condition:</p>
-<table>
+<div class="tscroll"><table>
   <tr><th>Ruled out</th><th>Margin</th><th>Reopens if</th></tr>
   <tr><td>air pressure</td><td>6.2 bar vs 5.5 needed &mdash; 13% headroom</td><td>compressor duty &gt; 80%</td></tr>
   <tr><td>servo tuning</td><td>drive replaced, fault back in 4 h</td><td>&mdash;</td></tr>
   <tr><td>ambient temperature</td><td>occurs at 18&deg;C and 31&deg;C alike</td><td><strong>humidity was never measured</strong></td></tr>
-</table>
+</table></div>
 <p class="note">That last row is the whole argument. &ldquo;Ruled out
 temperature&rdquo; would have thrown away the fact that humidity was never
 checked. The next person starts at row four, not row one.</p>
@@ -335,7 +361,7 @@ The method's only purpose is to keep them separable.</p>
 </div>
 <div class="bar"><i id="bar"></i></div>
 <div class="num" id="num"></div>
-<div class="hint">&larr; &rarr; or space &middot; F for fullscreen &middot; P to print</div>
+<div class="hint" id="hint">&larr; &rarr; or space &middot; F for fullscreen &middot; P to print</div>
 <script>
   const s=[...document.querySelectorAll('.slide')];let i=0;
   const bar=document.getElementById('bar'),num=document.getElementById('num');
@@ -353,10 +379,34 @@ The method's only purpose is to keep them separable.</p>
     else if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
     else if(e.key.toLowerCase()==='p'){window.print()}
   });
-  document.getElementById('deck').addEventListener('click',e=>{
-    if(e.target.closest('a')) return;   // let links be links
+  const deck=document.getElementById('deck');
+  const touch=window.matchMedia('(hover:none)').matches;
+  deck.addEventListener('click',e=>{
+    if(e.target.closest('a')) return;            // let links be links
+    if(moved) return;                            // that was a swipe/scroll
+    if(touch){ go(i+1); return; }                // no back-zone on touch
     go(e.clientX < window.innerWidth*0.28 ? i-1 : i+1);
   });
+  let x0=null,y0=null,moved=false,lockSwipe=false;
+  function inScroller(el){
+    for(let n=el; n && n!==deck; n=n.parentElement){
+      if(n.scrollWidth > n.clientWidth+1) return true;   // it scrolls sideways itself
+    }
+    return false;
+  }
+  deck.addEventListener('touchstart',e=>{
+    const t=e.changedTouches[0]; x0=t.clientX; y0=t.clientY; moved=false;
+    lockSwipe=inScroller(e.target);
+  },{passive:true});
+  deck.addEventListener('touchend',e=>{
+    if(x0===null) return;
+    const t=e.changedTouches[0], dx=t.clientX-x0, dy=t.clientY-y0;
+    if(lockSwipe){ moved=true; }                 // they were scrolling content
+    else if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)*1.5){ moved=true; go(dx<0?i+1:i-1); }
+    else if(Math.abs(dy)>14){ moved=true; }      // vertical = reading, not navigating
+    x0=y0=null;
+  },{passive:true});
+  if(touch) document.getElementById('hint').textContent='swipe or tap to advance';
   go(location.hash? parseInt(location.hash.slice(1))-1 : 0);
 </script>
 </body>
