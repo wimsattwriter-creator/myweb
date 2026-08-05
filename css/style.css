@@ -475,6 +475,10 @@ ul {
   border-bottom-color: var(--green-hill);
 }
 
+.panel--contact .figures-heading {
+  color: var(--earth-tan);
+}
+
 .panel--contact p {
   color: var(--earth-sand);
 }
@@ -1060,7 +1064,8 @@ ul {
   }
 
   .panel--contact h2,
-  .panel--contact p {
+  .panel--contact p,
+  .panel--contact .figures-heading {
     color: var(--text-primary) !important;
   }
 }
